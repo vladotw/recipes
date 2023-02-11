@@ -16,13 +16,13 @@ public class RecipeController {
         this.recipeService = recipeService;
     }
 
-    @GetMapping("/id")
-    public Recipe getRecipe(Integer id) throws NotFoundException {
+    @GetMapping()
+    public Recipe getRecipe(@RequestParam Integer id) throws NotFoundException {
         return recipeService.getRecipe(id);
     }
 
     @PostMapping
-    public Recipe addRecipe(@RequestParam Recipe recipe) {
+    public Recipe addRecipe(Recipe recipe) {
         return recipeService.addRecipe(recipe);
     }
 
