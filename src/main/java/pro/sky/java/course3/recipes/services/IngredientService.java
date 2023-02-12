@@ -5,7 +5,7 @@ import pro.sky.java.course3.recipes.model.Ingredient;
 
 public interface IngredientService {
 
-    Ingredient getIngredient(Integer id) throws NotFoundException;
+    Ingredient getIngredient(Integer id);
     Ingredient addIngredient(Ingredient ingredient);
 
 }

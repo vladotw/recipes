@@ -11,8 +11,8 @@ import java.util.*;
 @Service
 public class RecipeServiceImpl implements RecipeService {
 
-    private static Integer id = 0;
-    private Map<Integer, Recipe> recipeMap = new HashMap<>();
+    private static int id = 0;
+    private final Map<Integer, Recipe> recipeMap = new HashMap<>();
 
     @Override
     public Recipe addRecipe(Recipe recipe) {
@@ -20,12 +20,12 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
-    public Recipe getRecipe(Integer id) throws NotFoundException {
+    public Recipe getRecipe(Integer id) {
 
         Recipe recipe = recipeMap.get(id);
 
         if (recipe == null) {
-            throw new NotFoundException("Рецепт по данному номеру не найден");
+            throw new NotFoundException(recipe.toString());
         }
 
         return recipe;

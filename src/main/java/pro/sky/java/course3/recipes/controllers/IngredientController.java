@@ -14,13 +14,13 @@ public class IngredientController {
         this.ingredientService = ingredientService;
     }
 
-    @PostMapping("/id")
-    public Ingredient addIngredient(Ingredient ingredient) {
+    @PostMapping
+    public Ingredient addIngredient(@RequestBody Ingredient ingredient) {
         return ingredientService.addIngredient(ingredient);
     }
 
-    @GetMapping
-    public Ingredient getIngredient(@RequestParam Integer id) throws NotFoundException {
+    @GetMapping("/{id}")
+    public Ingredient getIngredient(@PathVariable Integer id) {
         return ingredientService.getIngredient(id);
     }
 

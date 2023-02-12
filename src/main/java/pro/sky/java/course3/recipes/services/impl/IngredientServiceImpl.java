@@ -12,8 +12,8 @@ import java.util.*;
 @Service
 public class IngredientServiceImpl implements IngredientService {
 
-    private static Map<Integer, Ingredient> ingredientMap = new HashMap<>();
-    private static Integer id = 1;
+    private final Map<Integer, Ingredient> ingredientMap = new HashMap<>();
+    private static int id = 1;
 
     @Override
     public Ingredient addIngredient(Ingredient ingredient){
@@ -22,11 +22,11 @@ public class IngredientServiceImpl implements IngredientService {
     }
 
     @Override
-    public Ingredient getIngredient(Integer id) throws NotFoundException {
+    public Ingredient getIngredient(Integer id) {
         Ingredient ingredient = ingredientMap.get(id);
 
         if (ingredient == null) {
-            throw new NotFoundException("Ингредиент по данному номеру не найден");
+            throw new NotFoundException(ingredient.toString());
         }
         return ingredient;
     }

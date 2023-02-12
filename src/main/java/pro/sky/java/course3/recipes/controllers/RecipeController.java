@@ -11,18 +11,18 @@ import pro.sky.java.course3.recipes.services.RecipeService;
 public class RecipeController {
     private final RecipeService recipeService;
 
-    public RecipeController(RecipeService recipeService, RecipeService step, RecipeService ingredient) {
+    public RecipeController(RecipeService recipeService) {
 
         this.recipeService = recipeService;
     }
 
-    @GetMapping()
-    public Recipe getRecipe(@RequestParam Integer id) throws NotFoundException {
+    @GetMapping("/{id}")
+    public Recipe getRecipe(@PathVariable Integer id) {
         return recipeService.getRecipe(id);
     }
 
     @PostMapping
-    public Recipe addRecipe(Recipe recipe) {
+    public Recipe addRecipe(@RequestBody Recipe recipe) {
         return recipeService.addRecipe(recipe);
     }
 

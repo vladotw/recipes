@@ -5,7 +5,7 @@ import pro.sky.java.course3.recipes.model.Recipe;
 
 public interface RecipeService {
 
-    Recipe getRecipe(Integer id) throws NotFoundException;
+    Recipe getRecipe(Integer id);
 
     Recipe addRecipe(Recipe recipe);
 
