@@ -29,4 +29,31 @@ public class IngredientServiceImpl implements IngredientService {
         }
         return ingredient;
     }
+
+    @Override
+    public Map<Integer, Ingredient> getAllIngredients() {
+
+        return ingredientMap;
+    }
+
+    @Override
+    public Ingredient editIngredient(int id, Ingredient ingredient) {
+
+        if (ingredientMap.containsKey(id)) {
+            ingredientMap.put(id, ingredient);
+            return ingredient;
+        }
+
+        return null;
+    }
+
+    @Override
+    public boolean deleteIngredient(int id) {
+        if (ingredientMap.containsKey(id)) {
+            ingredientMap.remove(id);
+            return true;
+        }
+
+        return false;
+    }
 }
