@@ -1,7 +1,6 @@
 package pro.sky.java.course3.recipes.controllers;
 
 import org.springframework.web.bind.annotation.*;
-import pro.sky.java.course3.recipes.exception.NotFoundException;
 import pro.sky.java.course3.recipes.model.Ingredient;
 import pro.sky.java.course3.recipes.services.IngredientService;
 

@@ -1,9 +1,7 @@
 package pro.sky.java.course3.recipes.controllers;
 
 import org.springframework.web.bind.annotation.*;
-import pro.sky.java.course3.recipes.exception.NotFoundException;
 import pro.sky.java.course3.recipes.model.Recipe;
-import pro.sky.java.course3.recipes.services.IngredientService;
 import pro.sky.java.course3.recipes.services.RecipeService;
 
 @RestController
@@ -25,6 +23,4 @@ public class RecipeController {
     public Recipe addRecipe(@RequestBody Recipe recipe) {
         return recipeService.addRecipe(recipe);
     }
-
-
 }

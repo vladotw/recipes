@@ -3,7 +3,6 @@ package pro.sky.java.course3.recipes.services.impl;
 import org.springframework.stereotype.Service;
 import pro.sky.java.course3.recipes.exception.NotFoundException;
 import pro.sky.java.course3.recipes.model.Ingredient;
-import pro.sky.java.course3.recipes.model.Recipe;
 import pro.sky.java.course3.recipes.services.IngredientService;
 
 import java.util.*;
