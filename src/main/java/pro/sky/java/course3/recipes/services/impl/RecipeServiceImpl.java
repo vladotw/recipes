@@ -1,9 +1,13 @@
 package pro.sky.java.course3.recipes.services.impl;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import pro.sky.java.course3.recipes.exception.NotFoundException;
 import pro.sky.java.course3.recipes.model.Recipe;
+import pro.sky.java.course3.recipes.services.FilesService;
 import pro.sky.java.course3.recipes.services.RecipeService;
 
 import java.util.*;
@@ -12,11 +16,39 @@ import java.util.*;
 public class RecipeServiceImpl implements RecipeService {
 
     private static int id = 0;
-    private final Map<Integer, Recipe> recipeMap = new HashMap<>();
+    private Map<Integer, Recipe> recipeMap = new HashMap<>();
+
+    private final FilesService recipeFileService;       // переменная для работы с FilesService
+
+    public RecipeServiceImpl(FilesService recipeFileService) {
+        this.recipeFileService = recipeFileService;
+    }
+
+    private void saveToRecipeFile() {
+        try {
+            String json = new ObjectMapper().writeValueAsString(recipeMap);
+            recipeFileService.saveToRecipeFile(json);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private Map<Integer, Recipe> readFromRecipeFile() {
+        String json = recipeFileService.readFromRecipeFile();
+
+        try {
+            recipeMap = new ObjectMapper().readValue(json, new TypeReference<HashMap<Integer, Recipe>>() {
+            });
+            return recipeMap;
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     @Override
     public Recipe addRecipe(Recipe recipe) {
         if (!StringUtils.isBlank(recipe.getName())) {
+            saveToRecipeFile();
             return recipeMap.put(id++, recipe);
         }
         return null;
@@ -24,7 +56,7 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     public Recipe getRecipe(Integer id) {
-
+        readFromRecipeFile();
         Recipe recipe = recipeMap.get(id);
 
         if (recipe == null) {
@@ -36,7 +68,7 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     public Map<Integer, Recipe> getAllRecipes() {
-
+        readFromRecipeFile();
         return recipeMap;
     }
 
@@ -45,6 +77,7 @@ public class RecipeServiceImpl implements RecipeService {
 
         if (recipeMap.containsKey(id)) {
             recipeMap.put(id, recipe);
+            saveToRecipeFile();
             return recipe;
         }
 
@@ -53,8 +86,10 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     public boolean deleteRecipe(int id) {
+        readFromRecipeFile();
         if (recipeMap.containsKey(id)) {
             recipeMap.remove(id);
+            saveToRecipeFile();
             return true;
         }
 
