@@ -1,5 +1,6 @@
 package pro.sky.java.course3.recipes.services.impl;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import pro.sky.java.course3.recipes.exception.NotFoundException;
 import pro.sky.java.course3.recipes.model.Ingredient;
@@ -16,8 +17,11 @@ public class IngredientServiceImpl implements IngredientService {
 
     @Override
     public Ingredient addIngredient(Ingredient ingredient){
+        if (!StringUtils.isBlank(ingredient.getName())) {
 
-        return ingredientMap.put(id++, ingredient);
+            return ingredientMap.put(id++, ingredient);
+        }
+        return null;
     }
 
     @Override
