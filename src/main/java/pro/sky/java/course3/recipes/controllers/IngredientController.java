@@ -25,20 +25,13 @@ public class IngredientController {
     public ResponseEntity<Ingredient> getIngredient(@PathVariable Integer id) {
         Ingredient ingredient = ingredientService.getIngredient(id);
 
-        if (ingredient == null) {                       // если метод возвращает null
-            return ResponseEntity.notFound().build();   // возвращается 404
-        }
-        return ResponseEntity.ok(ingredient);           // иначе возвращается ингредиент в теле
+        return ResponseEntity.ok(ingredient);
     }
 
     @GetMapping
     public ResponseEntity<Map<Integer, Ingredient>> getAllIngredients() {
-//        Ingredient ingredient = ingredientService.getIngredient();
 
-        if (ingredientService.getAllIngredients() == null) {                       // если метод возвращает null
-            return ResponseEntity.notFound().build();   // возвращается 404
-        }
-        return ResponseEntity.ok(ingredientService.getAllIngredients());           // иначе возвращается ингредиент в теле
+        return ResponseEntity.ok(ingredientService.getAllIngredients());
     }
 
     @PutMapping("/{id}")

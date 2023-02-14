@@ -17,13 +17,17 @@ public class RecipeController {
         this.recipeService = recipeService;
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Recipe> getRecipe(@PathVariable Integer id) {
+        Recipe recipe = recipeService.getRecipe(id);
+
+        return ResponseEntity.ok(recipe);
+    }
+
     @GetMapping
     public ResponseEntity<Map<Integer, Recipe>> getAllRecipes() {
 
-        if (recipeService.getAllRecipes() == null) {                       // если метод возвращает null
-            return ResponseEntity.notFound().build();   // возвращается 404
-        }
-        return ResponseEntity.ok(recipeService.getAllRecipes());           // иначе возвращается ингредиент в теле
+         return ResponseEntity.ok(recipeService.getAllRecipes());
     }
 
     @PostMapping
