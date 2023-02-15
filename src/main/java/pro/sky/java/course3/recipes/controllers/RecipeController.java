@@ -8,7 +8,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pro.sky.java.course3.recipes.model.Ingredient;
 import pro.sky.java.course3.recipes.model.Recipe;
 import pro.sky.java.course3.recipes.services.RecipeService;
 
@@ -147,7 +146,7 @@ public class RecipeController {
                     content = {
                     @Content(
                             mediaType = "application/json",
-                            schema = @Schema(implementation = Ingredient.class)
+                            schema = @Schema(implementation = Recipe.class)
                     )
             }
             )
