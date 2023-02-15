@@ -34,7 +34,7 @@ public class RecipeController {
                     content = {
                             @Content(
                                     mediaType = "application/json",
-                                    schema = @Schema(implementation = Ingredient.class)
+                                    schema = @Schema(implementation = Recipe.class)
                             )
                     }
             ),
@@ -58,7 +58,7 @@ public class RecipeController {
                     content = {
                             @Content(
                                     mediaType = "application/json",
-                                    schema = @Schema(implementation = Ingredient.class)
+                                    schema = @Schema(implementation = Recipe.class)
                             )
                     }
             ),
@@ -84,7 +84,7 @@ public class RecipeController {
                     content = {
                             @Content(
                                     mediaType = "application/json",
-                                    schema = @Schema(implementation = Ingredient.class)
+                                    schema = @Schema(implementation = Recipe.class)
                             )
                     }
             ),
@@ -110,7 +110,7 @@ public class RecipeController {
                     content = {
                             @Content(
                                     mediaType = "application/json",
-                                    schema = @Schema(implementation = Ingredient.class)
+                                    schema = @Schema(implementation = Recipe.class)
                             )
                     }
             ),
@@ -137,7 +137,7 @@ public class RecipeController {
                     content = {
                             @Content(
                                     mediaType = "application/json",
-                                    schema = @Schema(implementation = Ingredient.class)
+                                    schema = @Schema(implementation = Recipe.class)
                             )
                     }
             ),
