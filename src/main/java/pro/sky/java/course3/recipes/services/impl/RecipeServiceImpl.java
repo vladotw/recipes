@@ -74,7 +74,7 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     public Recipe editRecipe(int id, Recipe recipe) {
-
+        readFromRecipeFile();
         if (recipeMap.containsKey(id)) {
             recipeMap.put(id, recipe);
             saveToRecipeFile();
