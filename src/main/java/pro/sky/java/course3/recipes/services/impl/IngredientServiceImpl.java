@@ -37,7 +37,10 @@ public class IngredientServiceImpl implements IngredientService {
     @Override
     public Map<Integer, Ingredient> getAllIngredients() {
 
-        return ingredientMap;
+        if (ingredientMap.size() != 0) {
+            return ingredientMap;
+        }
+        return null;
     }
 
     @Override

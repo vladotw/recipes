@@ -74,8 +74,6 @@ public class IngredientController {
     public ResponseEntity<Ingredient> getIngredient(@PathVariable Integer id) {
         Ingredient ingredient = ingredientService.getIngredient(id);
 
-
-
         return ResponseEntity.ok(ingredient);
     }
 
