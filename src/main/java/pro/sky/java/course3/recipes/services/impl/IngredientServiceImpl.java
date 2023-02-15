@@ -3,6 +3,7 @@ package pro.sky.java.course3.recipes.services.impl;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.annotation.PostConstruct;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import pro.sky.java.course3.recipes.exception.NotFoundException;
@@ -22,6 +23,11 @@ public class IngredientServiceImpl implements IngredientService {
 
     public IngredientServiceImpl(FilesService ingredientFileService) {
         this.ingredientFileService = ingredientFileService;
+    }
+
+    @PostConstruct
+    private void init() {
+        readFromIngredientFile();
     }
 
     private void saveToIngredientFile() {
