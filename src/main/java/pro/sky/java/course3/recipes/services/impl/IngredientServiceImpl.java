@@ -72,9 +72,8 @@ public class IngredientServiceImpl implements IngredientService {
 
     @Override
     public Ingredient editIngredient(int id, Ingredient ingredient) {
-
+        readFromIngredientFile();
         if (ingredientMap.containsKey(id)) {
-            readFromIngredientFile();
             ingredientMap.put(id, ingredient);
             saveToIngredientFile();
             return ingredient;
