@@ -74,6 +74,7 @@ public class IngredientServiceImpl implements IngredientService {
     public Ingredient editIngredient(int id, Ingredient ingredient) {
 
         if (ingredientMap.containsKey(id)) {
+            readFromIngredientFile();
             ingredientMap.put(id, ingredient);
             saveToIngredientFile();
             return ingredient;
