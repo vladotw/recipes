@@ -37,7 +37,10 @@ public class RecipeServiceImpl implements RecipeService {
     @Override
     public Map<Integer, Recipe> getAllRecipes() {
 
-        return recipeMap;
+        if (recipeMap.size() != 0) {
+            return recipeMap;
+        }
+        return null;
     }
 
     @Override
