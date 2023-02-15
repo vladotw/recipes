@@ -84,8 +84,10 @@ public class IngredientServiceImpl implements IngredientService {
 
     @Override
     public boolean deleteIngredient(int id) {
+        readFromIngredientFile();
         if (ingredientMap.containsKey(id)) {
             ingredientMap.remove(id);
+            saveToIngredientFile();
             return true;
         }
 
