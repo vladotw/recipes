@@ -54,15 +54,15 @@ public class RecipeServiceImpl implements RecipeService {
     @Override
     public Recipe addRecipe(Recipe recipe) {
         if (!StringUtils.isBlank(recipe.getName())) {
+            recipeMap.put(id++, recipe);
             saveToRecipeFile();
-            return recipeMap.put(id++, recipe);
+            return recipe;
         }
         return null;
     }
 
     @Override
     public Recipe getRecipe(Integer id) {
-        readFromRecipeFile();
         Recipe recipe = recipeMap.get(id);
 
         if (recipe == null) {
@@ -74,13 +74,11 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     public Map<Integer, Recipe> getAllRecipes() {
-        readFromRecipeFile();
         return recipeMap;
     }
 
     @Override
     public Recipe editRecipe(int id, Recipe recipe) {
-        readFromRecipeFile();
         if (recipeMap.containsKey(id)) {
             recipeMap.put(id, recipe);
             saveToRecipeFile();
@@ -92,7 +90,6 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     public boolean deleteRecipe(int id) {
-        readFromRecipeFile();
         if (recipeMap.containsKey(id)) {
             recipeMap.remove(id);
             saveToRecipeFile();

@@ -53,15 +53,17 @@ public class IngredientServiceImpl implements IngredientService {
     @Override
     public Ingredient addIngredient(Ingredient ingredient){
         if (!StringUtils.isBlank(ingredient.getName())) {
+            ingredientMap.put(id++, ingredient);
             saveToIngredientFile();
-            return ingredientMap.put(id++, ingredient);
+            return ingredient;
+
         }
+
         return null;
     }
 
     @Override
     public Ingredient getIngredient(Integer id) {
-        readFromIngredientFile();
         Ingredient ingredient = ingredientMap.get(id);
 
         if (ingredient == null) {
@@ -72,13 +74,11 @@ public class IngredientServiceImpl implements IngredientService {
 
     @Override
     public Map<Integer, Ingredient> getAllIngredients() {
-        readFromIngredientFile();
         return ingredientMap;
     }
 
     @Override
     public Ingredient editIngredient(int id, Ingredient ingredient) {
-        readFromIngredientFile();
         if (ingredientMap.containsKey(id)) {
             ingredientMap.put(id, ingredient);
             saveToIngredientFile();
@@ -90,7 +90,6 @@ public class IngredientServiceImpl implements IngredientService {
 
     @Override
     public boolean deleteIngredient(int id) {
-        readFromIngredientFile();
         if (ingredientMap.containsKey(id)) {
             ingredientMap.remove(id);
             saveToIngredientFile();
