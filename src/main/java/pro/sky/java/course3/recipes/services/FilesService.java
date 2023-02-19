@@ -1,5 +1,7 @@
 package pro.sky.java.course3.recipes.services;
 
+import java.io.File;
+
 public interface FilesService {
 
 
@@ -10,4 +12,8 @@ public interface FilesService {
     String readFromIngredientFile();
 
     String readFromRecipeFile();
+
+    File getRecipeFile();
+
+    File getIngredientFile();
 }

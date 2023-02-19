@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import pro.sky.java.course3.recipes.services.FilesService;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -64,6 +65,17 @@ public class FilesServiceImpl implements FilesService {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public File getRecipeFile() {
+        return new File(recipeFilePath + "/" + recipeFileName);
+    }
+
+    @Override
+    public File getIngredientFile() {
+        return new File(ingredientFilePath + "/" + ingredientFileName);
+    }
+
 
     public void cleanIngredientFile() {
 
