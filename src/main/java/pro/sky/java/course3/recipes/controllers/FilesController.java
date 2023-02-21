@@ -29,7 +29,7 @@ public class FilesController {
         if (recipeFile.exists()) {
             InputStreamResource resource = new InputStreamResource(new FileInputStream(recipeFile));
             return ResponseEntity.ok()
-                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"Recipes\"")
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"Recipes.json\"")
                     .contentType(MediaType.APPLICATION_JSON)
                     .contentLength(recipeFile.length())
                     .body(resource)
@@ -39,7 +39,7 @@ public class FilesController {
         }
     }
 
-    @PostMapping(value = "/import", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(value = "/import/recipe", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Void> uploadRecipeFile(@RequestParam MultipartFile file) {
 
         filesService.cleanRecipeFile();
@@ -54,7 +54,7 @@ public class FilesController {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
 
-    @PostMapping(value = "/import", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(value = "/import/ingredient", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Void> uploadIngredientFile(@RequestParam MultipartFile file) {
 
         filesService.cleanIngredientFile();
